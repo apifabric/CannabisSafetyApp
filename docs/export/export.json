@@ -1,0 +1,53 @@
+{
+    "rules": [],
+    "models": [
+        {
+            "classname": "Allergy",
+            "code": "class Allergy(Base):  # type: ignore\n    \"\"\"\n    description: Represents any allergies to certain additives.\n    \"\"\"\n    __tablename__ = 'allergies'\n    _s_collection_name = 'Allergy'  # type: ignore\n\n    id = Column(Integer, primary_key=True)\n    name = Column(String)\n\n    # parent relationships (access parent)\n\n    # child relationships (access children)\n    UserAllergyList : Mapped[List[\"UserAllergy\"]] = relationship(back_populates=\"allergy\")"
+        },
+        {
+            "classname": "Branding",
+            "code": "class Branding(Base):  # type: ignore\n    \"\"\"\n    description: Represents a cannabis brand.\n    \"\"\"\n    __tablename__ = 'brandings'\n    _s_collection_name = 'Branding'  # type: ignore\n\n    id = Column(Integer, primary_key=True)\n    name = Column(String)\n\n    # parent relationships (access parent)\n\n    # child relationships (access children)\n    UserBrandingList : Mapped[List[\"UserBranding\"]] = relationship(back_populates=\"branding\")"
+        },
+        {
+            "classname": "OutletStore",
+            "code": "class OutletStore(Base):  # type: ignore\n    \"\"\"\n    description: Represents an outlet store location.\n    \"\"\"\n    __tablename__ = 'outlet_stores'\n    _s_collection_name = 'OutletStore'  # type: ignore\n\n    id = Column(Integer, primary_key=True)\n    name = Column(String)\n    location = Column(String)\n\n    # parent relationships (access parent)\n\n    # child relationships (access children)\n    PricingList : Mapped[List[\"Pricing\"]] = relationship(back_populates=\"outlet_store\")"
+        },
+        {
+            "classname": "SourceOfPlant",
+            "code": "class SourceOfPlant(Base):  # type: ignore\n    \"\"\"\n    description: Represents different sources of cannabis plants.\n    \"\"\"\n    __tablename__ = 'source_of_plants'\n    _s_collection_name = 'SourceOfPlant'  # type: ignore\n\n    id = Column(Integer, primary_key=True)\n    name = Column(String)\n\n    # parent relationships (access parent)\n\n    # child relationships (access children)\n    UserSourceOfPlantList : Mapped[List[\"UserSourceOfPlant\"]] = relationship(back_populates=\"source_of_plant\")"
+        },
+        {
+            "classname": "ThcPercentage",
+            "code": "class ThcPercentage(Base):  # type: ignore\n    \"\"\"\n    description: Represents allowed THC percentages.\n    \"\"\"\n    __tablename__ = 'thc_percentages'\n    _s_collection_name = 'ThcPercentage'  # type: ignore\n\n    id = Column(Integer, primary_key=True)\n    value = Column(Float)\n\n    # parent relationships (access parent)\n\n    # child relationships (access children)\n    UserThcPercentageList : Mapped[List[\"UserThcPercentage\"]] = relationship(back_populates=\"thc_percentage\")"
+        },
+        {
+            "classname": "User",
+            "code": "class User(Base):  # type: ignore\n    \"\"\"\n    description: Represents a user in the cannabis safety application.\n    \"\"\"\n    __tablename__ = 'users'\n    _s_collection_name = 'User'  # type: ignore\n\n    id = Column(Integer, primary_key=True)\n    name = Column(String)\n    email = Column(String)\n\n    # parent relationships (access parent)\n\n    # child relationships (access children)\n    PreferenceList : Mapped[List[\"Preference\"]] = relationship(back_populates=\"user\")\n    PricingList : Mapped[List[\"Pricing\"]] = relationship(back_populates=\"user\")\n    UserAllergyList : Mapped[List[\"UserAllergy\"]] = relationship(back_populates=\"user\")\n    UserBrandingList : Mapped[List[\"UserBranding\"]] = relationship(back_populates=\"user\")\n    UserSourceOfPlantList : Mapped[List[\"UserSourceOfPlant\"]] = relationship(back_populates=\"user\")\n    UserThcPercentageList : Mapped[List[\"UserThcPercentage\"]] = relationship(back_populates=\"user\")"
+        },
+        {
+            "classname": "Preference",
+            "code": "class Preference(Base):  # type: ignore\n    \"\"\"\n    description: Stores user-specific preferences regarding cannabis.\n    \"\"\"\n    __tablename__ = 'preferences'\n    _s_collection_name = 'Preference'  # type: ignore\n\n    id = Column(Integer, primary_key=True)\n    user_id = Column(ForeignKey('users.id'))\n    source_of_plant = Column(String)\n    percentage_of_thc = Column(Float)\n    preferred_branding = Column(String)\n\n    # parent relationships (access parent)\n    user : Mapped[\"User\"] = relationship(back_populates=(\"PreferenceList\"))"
+        },
+        {
+            "classname": "Pricing",
+            "code": "class Pricing(Base):  # type: ignore\n    \"\"\"\n    description: Stores pricing information for different users and outlet stores.\n    \"\"\"\n    __tablename__ = 'pricings'\n    _s_collection_name = 'Pricing'  # type: ignore\n\n    id = Column(Integer, primary_key=True)\n    user_id = Column(ForeignKey('users.id'))\n    outlet_store_id = Column(ForeignKey('outlet_stores.id'))\n    price = Column(Float)\n\n    # parent relationships (access parent)\n    outlet_store : Mapped[\"OutletStore\"] = relationship(back_populates=(\"PricingList\"))\n    user : Mapped[\"User\"] = relationship(back_populates=(\"PricingList\"))"
+        },
+        {
+            "classname": "UserAllergy",
+            "code": "class UserAllergy(Base):  # type: ignore\n    \"\"\"\n    description: Link table to associate users with allergies.\n    \"\"\"\n    __tablename__ = 'user_allergies'\n    _s_collection_name = 'UserAllergy'  # type: ignore\n\n    id = Column(Integer, primary_key=True)\n    user_id = Column(ForeignKey('users.id'))\n    allergy_id = Column(ForeignKey('allergies.id'))\n\n    # parent relationships (access parent)\n    allergy : Mapped[\"Allergy\"] = relationship(back_populates=(\"UserAllergyList\"))\n    user : Mapped[\"User\"] = relationship(back_populates=(\"UserAllergyList\"))"
+        },
+        {
+            "classname": "UserBranding",
+            "code": "class UserBranding(Base):  # type: ignore\n    \"\"\"\n    description: Link table to associate users with their preferred branding.\n    \"\"\"\n    __tablename__ = 'user_brandings'\n    _s_collection_name = 'UserBranding'  # type: ignore\n\n    id = Column(Integer, primary_key=True)\n    user_id = Column(ForeignKey('users.id'))\n    branding_id = Column(ForeignKey('brandings.id'))\n\n    # parent relationships (access parent)\n    branding : Mapped[\"Branding\"] = relationship(back_populates=(\"UserBrandingList\"))\n    user : Mapped[\"User\"] = relationship(back_populates=(\"UserBrandingList\"))"
+        },
+        {
+            "classname": "UserSourceOfPlant",
+            "code": "class UserSourceOfPlant(Base):  # type: ignore\n    \"\"\"\n    description: Link table to associate users with their preferred source of cannabis plants.\n    \"\"\"\n    __tablename__ = 'user_source_of_plants'\n    _s_collection_name = 'UserSourceOfPlant'  # type: ignore\n\n    id = Column(Integer, primary_key=True)\n    user_id = Column(ForeignKey('users.id'))\n    source_of_plant_id = Column(ForeignKey('source_of_plants.id'))\n\n    # parent relationships (access parent)\n    source_of_plant : Mapped[\"SourceOfPlant\"] = relationship(back_populates=(\"UserSourceOfPlantList\"))\n    user : Mapped[\"User\"] = relationship(back_populates=(\"UserSourceOfPlantList\"))"
+        },
+        {
+            "classname": "UserThcPercentage",
+            "code": "class UserThcPercentage(Base):  # type: ignore\n    \"\"\"\n    description: Link table to associate users with their preferred THC percentage.\n    \"\"\"\n    __tablename__ = 'user_thc_percentages'\n    _s_collection_name = 'UserThcPercentage'  # type: ignore\n\n    id = Column(Integer, primary_key=True)\n    user_id = Column(ForeignKey('users.id'))\n    thc_percentage_id = Column(ForeignKey('thc_percentages.id'))\n\n    # parent relationships (access parent)\n    thc_percentage : Mapped[\"ThcPercentage\"] = relationship(back_populates=(\"UserThcPercentageList\"))\n    user : Mapped[\"User\"] = relationship(back_populates=(\"UserThcPercentageList\"))"
+        }
+    ]
+}
