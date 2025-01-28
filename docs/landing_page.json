@@ -1,0 +1,154 @@
+{
+    "name": "CannabisSafe",
+    "logo": {
+        "Type": "Logo",
+        "name": "CannabisSafe Logo",
+        "description": "A stylized cannabis leaf with a shield emblem representing safety and trust."
+    },
+    "sections": [
+        {
+            "title": "The Ultimate Cannabis Experience",
+            "subtitle": "Personalized and Informed Choices",
+            "name": "HeroSection",
+            "label": "Home",
+            "content": "Discover the safe way to explore cannabis. **CannabisSafe** personalizes your experience by allowing you to select your preferred sources, THC levels, brands, outlets, and allergy considerations. Start your journey today!",
+            "order": 1,
+            "Type": "Hero",
+            "images": [
+                {
+                    "Type": "Hero",
+                    "name": "Hero Image",
+                    "description": "A vibrant image of a cannabis plant with a rainbow of colors symbolizing variety and choice."
+                }
+            ]
+        },
+        {
+            "title": "About CannabisSafe",
+            "subtitle": "Our Mission to Your Safety",
+            "name": "AboutSection",
+            "label": "About",
+            "content": "**CannabisSafe** is dedicated to ensuring your cannabis experience is both enjoyable and safe. Our platform empowers users by providing an easy-to-use application to select preferences and avoid potential allergens. Our mission is to advocate for safe cannabis consumption for everyone.",
+            "order": 2,
+            "Type": "About",
+            "images": [
+                {
+                    "Type": "Infographic",
+                    "name": "About Infographic",
+                    "description": "An infographic showing the growth of cannabis safety awareness."
+                }
+            ]
+        },
+        {
+            "title": "Our Services",
+            "subtitle": "Tailored to Your Needs",
+            "name": "ServicesSection",
+            "label": "Services",
+            "content": "1. **Preference Recording** - Select your preferred cannabis source, THC percentage, brands, and prices.\n2. **Allergy Notifications** - Avoid unwanted reactions by notifying us of any additives you\u2019re allergic to.\n3. **Outlet Locator** - Find the nearest certified outlets carrying your preferred products.\n4. **Brand Comparison** - Analyze and compare different brands based on your set preferences.",
+            "order": 3,
+            "Type": "Services",
+            "images": [
+                {
+                    "Type": "ItemListing",
+                    "name": "Service Images",
+                    "description": "Icons representing various services we offer."
+                }
+            ]
+        },
+        {
+            "title": "Real Experiences, Real Safety",
+            "subtitle": "Testimonials from Happy Users",
+            "name": "TestimonialsSection",
+            "label": "Testimonials",
+            "content": "_\u201cCannabisSafe has transformed how I shop for cannabis. No more guessing games - I know exactly what I\u2019m getting!\u201d_ - **Jane D.**\n\n_\u201cWith my unique allergies, CannabisSafe gives me peace of mind to safely enjoy my favorite brands.\u201d_ - **Alex P.**",
+            "order": 4,
+            "Type": "Testimonials",
+            "images": [
+                {
+                    "Type": "Testimonial",
+                    "name": "User Testimonials",
+                    "description": "Photos of happy users with quotes."
+                }
+            ]
+        },
+        {
+            "title": "Explore Our Offers",
+            "subtitle": "Get Started on Your Safe Cannabis Journey",
+            "name": "CallToActionSection",
+            "label": "Get Started",
+            "content": "Join thousands of users who enjoy a personalized and safe cannabis experience. [Start Now](#) and take control of your cannabis journey.",
+            "order": 5,
+            "Type": "CallToAction",
+            "images": [
+                {
+                    "Type": "CallToAction",
+                    "name": "Join Now Banner",
+                    "description": "A motivating graphic encouraging users to start their journey."
+                }
+            ]
+        },
+        {
+            "title": "Pricing Plans",
+            "subtitle": "Find the Right Option for You",
+            "name": "PricingSection",
+            "label": "Pricing",
+            "content": "**Free Plan** - Basic access, record preferences and allergies.\n\n**Premium Plan** - $9.99/month, access to brand comparison and outlet locator.\n\n**Enterprise Plan** - Custom, tailored solutions for large groups or organizations.",
+            "order": 6,
+            "Type": "Pricing",
+            "images": [
+                {
+                    "Type": "Promotional",
+                    "name": "Pricing Details",
+                    "description": "A detailed image showing the different pricing plan tiers."
+                }
+            ]
+        },
+        {
+            "title": "FAQs",
+            "subtitle": "Your Questions, Answered",
+            "name": "FAQSection",
+            "label": "FAQ",
+            "content": "**How do I record my cannabis preferences?**\n- Use our easy interface to add your preferences in the app.\n\n**How does CannabisSafe ensure my safety?**\n- We use data-driven technology to monitor and warn about potential allergens.",
+            "order": 7,
+            "Type": "FAQ",
+            "images": [
+                {
+                    "Type": "Icon",
+                    "name": "FAQ Icons",
+                    "description": "Small icons representing frequently asked questions."
+                }
+            ]
+        },
+        {
+            "title": "Contact Us",
+            "subtitle": "We'd Love to Hear from You",
+            "name": "ContactSection",
+            "label": "Contact",
+            "content": "Reach out to us for any inquiries or support.\n- **Email:** support@cannabissafe.com\n- **Phone:** +1 800 456 7890\n- **Address:** 1234 Greenway Blvd, Suite 100\n\nFollow us on [Twitter](#), [Facebook](#), and [Instagram](#).",
+            "order": 8,
+            "Type": "Contact",
+            "images": [
+                {
+                    "Type": "Map",
+                    "name": "Location Map",
+                    "description": "Map showing the location of our main offices."
+                }
+            ]
+        },
+        {
+            "title": "Join Our Newsletter",
+            "subtitle": "Stay Updated with the Latest",
+            "name": "FooterSection",
+            "label": "Newsletter",
+            "content": "Sign up for our newsletter to receive the latest product updates, tips, and promotions directly to your inbox every month.",
+            "order": 9,
+            "Type": "Footer",
+            "images": [
+                {
+                    "Type": "Thumbnail",
+                    "name": "Newsletter Signup Thumbnail",
+                    "description": "A small preview image of a mobile device with our app interface."
+                }
+            ]
+        }
+    ]
+}

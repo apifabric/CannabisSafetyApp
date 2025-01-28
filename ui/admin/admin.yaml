@@ -1,0 +1,309 @@
+about:
+  date: January 28, 2025 15:43:17
+  recent_changes: works with modified safrs-react-admin
+  version: 0.0.0
+api_root: '{http_type}://{swagger_host}:{port}/{api}'
+authentication: '{system-default}'
+info:
+  number_relationships: 11
+  number_tables: 12
+info_toggle_checked: true
+resources:
+  Allergy:
+    attributes:
+    - label: ' name*'
+      name: name
+      search: true
+      sort: true
+    - name: id
+    description: Represents any allergies to certain additives.
+    info_list: Represents any allergies to certain additives.
+    tab_groups:
+    - direction: tomany
+      fks:
+      - allergy_id
+      name: UserAllergyList
+      resource: UserAllergy
+    type: Allergy
+    user_key: name
+  Branding:
+    attributes:
+    - label: ' name*'
+      name: name
+      search: true
+      sort: true
+    - name: id
+    description: Represents a cannabis brand.
+    info_list: Represents a cannabis brand.
+    tab_groups:
+    - direction: tomany
+      fks:
+      - branding_id
+      name: UserBrandingList
+      resource: UserBranding
+    type: Branding
+    user_key: name
+  OutletStore:
+    attributes:
+    - label: ' name*'
+      name: name
+      search: true
+      sort: true
+    - name: location
+    - name: id
+    description: Represents an outlet store location.
+    info_list: Represents an outlet store location.
+    tab_groups:
+    - direction: tomany
+      fks:
+      - outlet_store_id
+      name: PricingList
+      resource: Pricing
+    type: OutletStore
+    user_key: name
+  Preference:
+    attributes:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+    - name: user_id
+    - name: source_of_plant
+    - name: percentage_of_thc
+    - name: preferred_branding
+    description: Stores user-specific preferences regarding cannabis.
+    info_list: Stores user-specific preferences regarding cannabis.
+    tab_groups:
+    - direction: toone
+      fks:
+      - user_id
+      name: user
+      resource: User
+    type: Preference
+    user_key: id
+  Pricing:
+    attributes:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+    - name: outlet_store_id
+    - name: user_id
+    - name: price
+    description: Stores pricing information for different users and outlet stores.
+    info_list: Stores pricing information for different users and outlet stores.
+    tab_groups:
+    - direction: toone
+      fks:
+      - outlet_store_id
+      name: outlet_store
+      resource: OutletStore
+    - direction: toone
+      fks:
+      - user_id
+      name: user
+      resource: User
+    type: Pricing
+    user_key: id
+  SourceOfPlant:
+    attributes:
+    - label: ' name*'
+      name: name
+      search: true
+      sort: true
+    - name: id
+    description: Represents different sources of cannabis plants.
+    info_list: Represents different sources of cannabis plants.
+    tab_groups:
+    - direction: tomany
+      fks:
+      - source_of_plant_id
+      name: UserSourceOfPlantList
+      resource: UserSourceOfPlant
+    type: SourceOfPlant
+    user_key: name
+  ThcPercentage:
+    attributes:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+    - name: value
+    description: Represents allowed THC percentages.
+    info_list: Represents allowed THC percentages.
+    tab_groups:
+    - direction: tomany
+      fks:
+      - thc_percentage_id
+      name: UserThcPercentageList
+      resource: UserThcPercentage
+    type: ThcPercentage
+    user_key: id
+  User:
+    attributes:
+    - label: ' name*'
+      name: name
+      search: true
+      sort: true
+    - name: email
+    - name: id
+    description: Represents a user in the cannabis safety application.
+    info_list: Represents a user in the cannabis safety application.
+    tab_groups:
+    - direction: tomany
+      fks:
+      - user_id
+      name: PreferenceList
+      resource: Preference
+    - direction: tomany
+      fks:
+      - user_id
+      name: PricingList
+      resource: Pricing
+    - direction: tomany
+      fks:
+      - user_id
+      name: UserAllergyList
+      resource: UserAllergy
+    - direction: tomany
+      fks:
+      - user_id
+      name: UserBrandingList
+      resource: UserBranding
+    - direction: tomany
+      fks:
+      - user_id
+      name: UserSourceOfPlantList
+      resource: UserSourceOfPlant
+    - direction: tomany
+      fks:
+      - user_id
+      name: UserThcPercentageList
+      resource: UserThcPercentage
+    type: User
+    user_key: name
+  UserAllergy:
+    attributes:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+    - name: allergy_id
+    - name: user_id
+    description: Link table to associate users with allergies.
+    info_list: Link table to associate users with allergies.
+    tab_groups:
+    - direction: toone
+      fks:
+      - allergy_id
+      name: allergy
+      resource: Allergy
+    - direction: toone
+      fks:
+      - user_id
+      name: user
+      resource: User
+    type: UserAllergy
+    user_key: id
+  UserBranding:
+    attributes:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+    - name: branding_id
+    - name: user_id
+    description: Link table to associate users with their preferred branding.
+    info_list: Link table to associate users with their preferred branding.
+    tab_groups:
+    - direction: toone
+      fks:
+      - branding_id
+      name: branding
+      resource: Branding
+    - direction: toone
+      fks:
+      - user_id
+      name: user
+      resource: User
+    type: UserBranding
+    user_key: id
+  UserSourceOfPlant:
+    attributes:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+    - name: source_of_plant_id
+    - name: user_id
+    description: Link table to associate users with their preferred source of cannabis
+      plants.
+    info_list: Link table to associate users with their preferred source of cannabis
+      plants.
+    tab_groups:
+    - direction: toone
+      fks:
+      - source_of_plant_id
+      name: source_of_plant
+      resource: SourceOfPlant
+    - direction: toone
+      fks:
+      - user_id
+      name: user
+      resource: User
+    type: UserSourceOfPlant
+    user_key: id
+  UserThcPercentage:
+    attributes:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+    - name: thc_percentage_id
+    - name: user_id
+    description: Link table to associate users with their preferred THC percentage.
+    info_list: Link table to associate users with their preferred THC percentage.
+    tab_groups:
+    - direction: toone
+      fks:
+      - thc_percentage_id
+      name: thc_percentage
+      resource: ThcPercentage
+    - direction: toone
+      fks:
+      - user_id
+      name: user
+      resource: User
+    type: UserThcPercentage
+    user_key: id
+settings:
+  HomeJS: /admin-app/home.js
+  max_list_columns: 8
+  style_guide:
+    applicationLocales:
+    - en
+    - es
+    currency_symbol: $
+    currency_symbol_position: left
+    date_format: LL
+    decimal_max: '1000000000'
+    decimal_min: '0'
+    decimal_separator: .
+    detail_mode: tab
+    edit_on_mode: dblclick
+    exclude_listpicker: false
+    include_translation: 'false'
+    keycloak_client_id: alsclient
+    keycloak_realm: kcals
+    keycloak_url: http://localhost:8080
+    locale: en
+    max_decimal_digits: '4'
+    min_decimal_digits: '2'
+    new_mode: dialog
+    pick_style: list
+    row_height: small,
+    serviceType: OntimizeEE
+    startSessionPath: /auth/login
+    style: light
+    thousand_separator: ','
+    use_keycloak: 'false'

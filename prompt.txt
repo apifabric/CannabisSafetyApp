@@ -1,0 +1,3 @@
+create a cannabis safety application that allows a user to record their preference for source of plant, percentage of THC, preferred branding, prices, outlet store locations, and any possible allergies to certain additives.
+.
+Create at least 12 tables (models)

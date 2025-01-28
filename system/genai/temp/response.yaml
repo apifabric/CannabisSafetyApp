@@ -1,0 +1,342 @@
+"models":
+- "classname": |-
+    User
+  "code": |-
+    class User(Base):
+        __tablename__ = 'users'
+        id = Column(Integer, primary_key=True)
+        name = Column(String)
+        email = Column(String)
+  "description": |-
+    Represents a user in the cannabis safety application.
+  "name": |-
+    User
+- "classname": |-
+    Preference
+  "code": |-
+    class Preference(Base):
+        __tablename__ = 'preferences'
+        id = Column(Integer, primary_key=True)
+        user_id = Column(Integer, ForeignKey('users.id'))
+        source_of_plant = Column(String)
+        percentage_of_thc = Column(Float)
+        preferred_branding = Column(String)
+  "description": |-
+    Stores user-specific preferences regarding cannabis.
+  "name": |-
+    Preference
+- "classname": |-
+    Allergy
+  "code": |-
+    class Allergy(Base):
+        __tablename__ = 'allergies'
+        id = Column(Integer, primary_key=True)
+        name = Column(String)
+  "description": |-
+    Represents any allergies to certain additives.
+  "name": |-
+    Allergy
+- "classname": |-
+    UserAllergy
+  "code": |-
+    class UserAllergy(Base):
+        __tablename__ = 'user_allergies'
+        id = Column(Integer, primary_key=True)
+        user_id = Column(Integer, ForeignKey('users.id'))
+        allergy_id = Column(Integer, ForeignKey('allergies.id'))
+  "description": |-
+    Link table to associate users with allergies.
+  "name": |-
+    UserAllergy
+- "classname": |-
+    OutletStore
+  "code": |-
+    class OutletStore(Base):
+        __tablename__ = 'outlet_stores'
+        id = Column(Integer, primary_key=True)
+        name = Column(String)
+        location = Column(String)
+  "description": |-
+    Represents an outlet store location.
+  "name": |-
+    OutletStore
+- "classname": |-
+    Pricing
+  "code": |-
+    class Pricing(Base):
+        __tablename__ = 'pricings'
+        id = Column(Integer, primary_key=True)
+        user_id = Column(Integer, ForeignKey('users.id'))
+        outlet_store_id = Column(Integer, ForeignKey('outlet_stores.id'))
+        price = Column(Float)
+  "description": |-
+    Stores pricing information for different users and outlet stores.
+  "name": |-
+    Pricing
+- "classname": |-
+    Branding
+  "code": |-
+    class Branding(Base):
+        __tablename__ = 'brandings'
+        id = Column(Integer, primary_key=True)
+        name = Column(String)
+  "description": |-
+    Represents a cannabis brand.
+  "name": |-
+    Branding
+- "classname": |-
+    UserBranding
+  "code": |-
+    class UserBranding(Base):
+        __tablename__ = 'user_brandings'
+        id = Column(Integer, primary_key=True)
+        user_id = Column(Integer, ForeignKey('users.id'))
+        branding_id = Column(Integer, ForeignKey('brandings.id'))
+  "description": |-
+    Link table to associate users with their preferred branding.
+  "name": |-
+    UserBranding
+- "classname": |-
+    SourceOfPlant
+  "code": |-
+    class SourceOfPlant(Base):
+        __tablename__ = 'source_of_plants'
+        id = Column(Integer, primary_key=True)
+        name = Column(String)
+  "description": |-
+    Represents different sources of cannabis plants.
+  "name": |-
+    SourceOfPlant
+- "classname": |-
+    UserSourceOfPlant
+  "code": |-
+    class UserSourceOfPlant(Base):
+        __tablename__ = 'user_source_of_plants'
+        id = Column(Integer, primary_key=True)
+        user_id = Column(Integer, ForeignKey('users.id'))
+        source_of_plant_id = Column(Integer, ForeignKey('source_of_plants.id'))
+  "description": |-
+    Link table to associate users with their preferred source of cannabis plants.
+  "name": |-
+    UserSourceOfPlant
+- "classname": |-
+    ThcPercentage
+  "code": |-
+    class ThcPercentage(Base):
+        __tablename__ = 'thc_percentages'
+        id = Column(Integer, primary_key=True)
+        value = Column(Float)
+  "description": |-
+    Represents allowed THC percentages.
+  "name": |-
+    ThcPercentage
+- "classname": |-
+    UserThcPercentage
+  "code": |-
+    class UserThcPercentage(Base):
+        __tablename__ = 'user_thc_percentages'
+        id = Column(Integer, primary_key=True)
+        user_id = Column(Integer, ForeignKey('users.id'))
+        thc_percentage_id = Column(Integer, ForeignKey('thc_percentages.id'))
+  "description": |-
+    Link table to associate users with their preferred THC percentage.
+  "name": |-
+    UserThcPercentage
+"name": |-
+  CannabisSafetyApp
+"rules": []
+"test_data": ""
+"test_data_rows":
+- "code": |-
+    user1 = User(id=1, name="Alice", email="alice@example.com")
+  "test_data_row_variable": |-
+    user1
+- "code": |-
+    user2 = User(id=2, name="Bob", email="bob@example.com")
+  "test_data_row_variable": |-
+    user2
+- "code": |-
+    user3 = User(id=3, name="Charlie", email="charlie@example.com")
+  "test_data_row_variable": |-
+    user3
+- "code": |-
+    user4 = User(id=4, name="David", email="david@example.com")
+  "test_data_row_variable": |-
+    user4
+- "code": |-
+    preference1 = Preference(id=1, user_id=1, source_of_plant="GreenHaven", percentage_of_thc=18.5, preferred_branding="EcoCanna")
+  "test_data_row_variable": |-
+    preference1
+- "code": |-
+    preference2 = Preference(id=2, user_id=2, source_of_plant="SunGrowers", percentage_of_thc=22.0, preferred_branding="Cannaluxe")
+  "test_data_row_variable": |-
+    preference2
+- "code": |-
+    preference3 = Preference(id=3, user_id=3, source_of_plant="GreenHaven", percentage_of_thc=20.0, preferred_branding="NaturalHigh")
+  "test_data_row_variable": |-
+    preference3
+- "code": |-
+    preference4 = Preference(id=4, user_id=4, source_of_plant="FarmFresh", percentage_of_thc=15.0, preferred_branding="PurePlant")
+  "test_data_row_variable": |-
+    preference4
+- "code": |-
+    allergy1 = Allergy(id=1, name="Nuts")
+  "test_data_row_variable": |-
+    allergy1
+- "code": |-
+    allergy2 = Allergy(id=2, name="Gluten")
+  "test_data_row_variable": |-
+    allergy2
+- "code": |-
+    allergy3 = Allergy(id=3, name="Sulfites")
+  "test_data_row_variable": |-
+    allergy3
+- "code": |-
+    allergy4 = Allergy(id=4, name="Dairy")
+  "test_data_row_variable": |-
+    allergy4
+- "code": |-
+    user_allergy1 = UserAllergy(id=1, user_id=1, allergy_id=1)
+  "test_data_row_variable": |-
+    user_allergy1
+- "code": |-
+    user_allergy2 = UserAllergy(id=2, user_id=2, allergy_id=2)
+  "test_data_row_variable": |-
+    user_allergy2
+- "code": |-
+    user_allergy3 = UserAllergy(id=3, user_id=3, allergy_id=3)
+  "test_data_row_variable": |-
+    user_allergy3
+- "code": |-
+    user_allergy4 = UserAllergy(id=4, user_id=4, allergy_id=4)
+  "test_data_row_variable": |-
+    user_allergy4
+- "code": |-
+    outlet_store1 = OutletStore(id=1, name="Downtown Dispensary", location="New York")
+  "test_data_row_variable": |-
+    outlet_store1
+- "code": |-
+    outlet_store2 = OutletStore(id=2, name="Green Valley", location="Los Angeles")
+  "test_data_row_variable": |-
+    outlet_store2
+- "code": |-
+    outlet_store3 = OutletStore(id=3, name="The Green House", location="Seattle")
+  "test_data_row_variable": |-
+    outlet_store3
+- "code": |-
+    outlet_store4 = OutletStore(id=4, name="SunnyFields", location="San Francisco")
+  "test_data_row_variable": |-
+    outlet_store4
+- "code": |-
+    pricing1 = Pricing(id=1, user_id=1, outlet_store_id=1, price=50.0)
+  "test_data_row_variable": |-
+    pricing1
+- "code": |-
+    pricing2 = Pricing(id=2, user_id=2, outlet_store_id=2, price=45.0)
+  "test_data_row_variable": |-
+    pricing2
+- "code": |-
+    pricing3 = Pricing(id=3, user_id=3, outlet_store_id=3, price=60.0)
+  "test_data_row_variable": |-
+    pricing3
+- "code": |-
+    pricing4 = Pricing(id=4, user_id=4, outlet_store_id=4, price=55.0)
+  "test_data_row_variable": |-
+    pricing4
+- "code": |-
+    branding1 = Branding(id=1, name="EcoCanna")
+  "test_data_row_variable": |-
+    branding1
+- "code": |-
+    branding2 = Branding(id=2, name="Cannaluxe")
+  "test_data_row_variable": |-
+    branding2
+- "code": |-
+    branding3 = Branding(id=3, name="NaturalHigh")
+  "test_data_row_variable": |-
+    branding3
+- "code": |-
+    branding4 = Branding(id=4, name="PurePlant")
+  "test_data_row_variable": |-
+    branding4
+- "code": |-
+    user_branding1 = UserBranding(id=1, user_id=1, branding_id=1)
+  "test_data_row_variable": |-
+    user_branding1
+- "code": |-
+    user_branding2 = UserBranding(id=2, user_id=2, branding_id=2)
+  "test_data_row_variable": |-
+    user_branding2
+- "code": |-
+    user_branding3 = UserBranding(id=3, user_id=3, branding_id=3)
+  "test_data_row_variable": |-
+    user_branding3
+- "code": |-
+    user_branding4 = UserBranding(id=4, user_id=4, branding_id=4)
+  "test_data_row_variable": |-
+    user_branding4
+- "code": |-
+    source_of_plant1 = SourceOfPlant(id=1, name="GreenHaven")
+  "test_data_row_variable": |-
+    source_of_plant1
+- "code": |-
+    source_of_plant2 = SourceOfPlant(id=2, name="SunGrowers")
+  "test_data_row_variable": |-
+    source_of_plant2
+- "code": |-
+    source_of_plant3 = SourceOfPlant(id=3, name="FarmFresh")
+  "test_data_row_variable": |-
+    source_of_plant3
+- "code": |-
+    source_of_plant4 = SourceOfPlant(id=4, name="UrbanFarm")
+  "test_data_row_variable": |-
+    source_of_plant4
+- "code": |-
+    user_source_of_plant1 = UserSourceOfPlant(id=1, user_id=1, source_of_plant_id=1)
+  "test_data_row_variable": |-
+    user_source_of_plant1
+- "code": |-
+    user_source_of_plant2 = UserSourceOfPlant(id=2, user_id=2, source_of_plant_id=2)
+  "test_data_row_variable": |-
+    user_source_of_plant2
+- "code": |-
+    user_source_of_plant3 = UserSourceOfPlant(id=3, user_id=3, source_of_plant_id=1)
+  "test_data_row_variable": |-
+    user_source_of_plant3
+- "code": |-
+    user_source_of_plant4 = UserSourceOfPlant(id=4, user_id=4, source_of_plant_id=3)
+  "test_data_row_variable": |-
+    user_source_of_plant4
+- "code": |-
+    thc_percentage1 = ThcPercentage(id=1, value=18.5)
+  "test_data_row_variable": |-
+    thc_percentage1
+- "code": |-
+    thc_percentage2 = ThcPercentage(id=2, value=22.0)
+  "test_data_row_variable": |-
+    thc_percentage2
+- "code": |-
+    thc_percentage3 = ThcPercentage(id=3, value=15.0)
+  "test_data_row_variable": |-
+    thc_percentage3
+- "code": |-
+    thc_percentage4 = ThcPercentage(id=4, value=10.0)
+  "test_data_row_variable": |-
+    thc_percentage4
+- "code": |-
+    user_thc_percentage1 = UserThcPercentage(id=1, user_id=1, thc_percentage_id=1)
+  "test_data_row_variable": |-
+    user_thc_percentage1
+- "code": |-
+    user_thc_percentage2 = UserThcPercentage(id=2, user_id=2, thc_percentage_id=2)
+  "test_data_row_variable": |-
+    user_thc_percentage2
+- "code": |-
+    user_thc_percentage3 = UserThcPercentage(id=3, user_id=3, thc_percentage_id=1)
+  "test_data_row_variable": |-
+    user_thc_percentage3
+- "code": |-
+    user_thc_percentage4 = UserThcPercentage(id=4, user_id=4, thc_percentage_id=3)
+  "test_data_row_variable": |-
+    user_thc_percentage4
+"test_data_sqlite": ""
